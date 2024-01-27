@@ -1,0 +1,10 @@
+@import "global.colors";
+@import "global.fonts";
+@import "global.sizes";
+@import "../mixins/getKVFromSCSSMaps";
+
+:root {
+  @include get-KeyValue-from-SCSS-Maps($global-colors);
+  @include get-KeyValue-from-SCSS-Maps($global-fonts);
+  @include get-KeyValue-from-SCSS-Maps($global-sizes);
+}

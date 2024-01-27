@@ -1,0 +1,17 @@
+@import url("lib/reset.css");
+@import url("config/font.config.css");
+@import "variables/global";
+
+* {
+	font: var(--font-m);
+}
+
+/* for MainLayout and Storybook */
+.MainLayout {
+	display: flex;
+	width: 100%;
+}
+.page-wrapper {
+	padding: 2dvh;
+	width: 100dvw;
+}

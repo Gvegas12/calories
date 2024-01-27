@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+Yellow='\033[0;33m'
+Green='\033[0;32m'
+Red='\033[0;31m'
+NC='\033[0m'
+
+function runScript() {
+    echo -e "\n\n 💡 ${Yellow} $1 ${NC} \n"
+    $2
+    if [ $? -eq 0 ]; then
+        echo -e "\n\n ${Green} 🎉 [$1]: Success! ${NC} \n"
+    else
+        echo -e "\n\n ${Red} 🎉 [$1]: Error! ${NC} \n"
+    fi
+}
+
+runScript "Run linting TypeScript" "npm run lint:ts"
+# runScript "Run linting SCSS" "npm run lint:scss"
+# runScript "Run unit test" "npm run test:unit"
+runScript "Build Production project" "npm run build:prod"
+# runScript "Build Storybook" "npm run sb:build"
+# runScript "Visual Regression Testing" "npm run test:ui:ci"
+# runScript "Remove "storybook-static"" "rm -rf storybook-static"
