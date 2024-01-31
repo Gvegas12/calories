@@ -8,8 +8,4 @@ export const protectedRouteConfig: RouteProps[] = [
 		path: protectedRoutePaths.home,
 		element: <HomePage />,
 	},
-	{
-		path: `${protectedRoutePaths.questionnaire}/*`,
-		element: <HomePage />,
-	},
 ];

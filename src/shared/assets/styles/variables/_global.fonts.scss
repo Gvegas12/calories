@@ -1,6 +1,6 @@
 $global-fonts: (
 	--font--family-main: (
-		"Roboto",
+		var(--main-font-family),
 		sans-serif,
 	),
 	// --------- text-s ↴ ----------

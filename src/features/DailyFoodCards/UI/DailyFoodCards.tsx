@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 import { Stack } from "@mui/material";
 import { green } from "@mui/material/colors";
@@ -6,6 +6,8 @@ import { green } from "@mui/material/colors";
 import { СalorieСountingСard } from "@/entities/food";
 
 export const DailyFoodCards: FC = () => {
+	useEffect(() => {}, []);
+
 	return (
 		<Stack
 			display="flex"

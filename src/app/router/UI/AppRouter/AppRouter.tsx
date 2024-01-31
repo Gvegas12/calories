@@ -6,6 +6,7 @@ import MainLayout from "@/processes/MainLayout";
 import { protectedRoutePaths } from "@/shared/config/routes";
 
 import { protectedRouteConfig, publicRouteConfig } from "../../config";
+import { ProtectedRoutesProxy } from "../ProtectedRoutesProxy/ProtectedRoutesProxy";
 
 const AppRouter: FC = () => {
 	return (
@@ -25,9 +26,9 @@ const AppRouter: FC = () => {
 						key={i}
 						path={path}
 						element={
-							// <ProtectedRoutesProxy>
-							<Suspense fallback={<div>Loading...</div>}>{element}</Suspense>
-							// </ProtectedRoutesProxy>
+							<ProtectedRoutesProxy>
+								<Suspense fallback={<div>Loading...</div>}>{element}</Suspense>
+							</ProtectedRoutesProxy>
 						}
 					/>
 				))}
