@@ -62,7 +62,7 @@ export const LoginByEmail: FC<LoginByEmailProps> = ({ className }) => {
 					<UI.FieldText
 						className={s.field}
 						control={control}
-						sx={{ marginBottom: 2, borderColor: "white" }}
+						sx={{ marginBottom: 3, borderColor: "white" }}
 						InputProps={{
 							sx: {
 								borderRadius: "1rem",
