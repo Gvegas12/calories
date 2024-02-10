@@ -4,12 +4,12 @@ import AddIcon from "@mui/icons-material/Add";
 import EggAltOutlinedIcon from "@mui/icons-material/EggAltOutlined";
 import { Box, Stack, Typography } from "@mui/material";
 
-interface СalorieСountingСardProps {
+interface СaloriesСountingСardProps {
 	mock_color?: string;
 	name: string;
 }
 
-export const СalorieСountingСard: FC<СalorieСountingСardProps> = ({
+export const СaloriesСountingСard: FC<СaloriesСountingСardProps> = ({
 	mock_color,
 	name,
 }) => {

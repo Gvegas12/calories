@@ -3,9 +3,12 @@ import { FC, useEffect } from "react";
 import { Stack } from "@mui/material";
 import { green } from "@mui/material/colors";
 
-import { СalorieСountingСard } from "@/entities/food";
+import { СaloriesСountingСard } from "@/entities/eating";
+import { useUserStore } from "@/entities/user";
 
 export const DailyFoodCards: FC = () => {
+	const { data } = useUserStore();
+
 	useEffect(() => {}, []);
 
 	return (
@@ -16,11 +19,11 @@ export const DailyFoodCards: FC = () => {
 			gap={1.5}
 			justifyContent="space-between"
 		>
-			<СalorieСountingСard name="Завтрак" mock_color={green[50]} />
-			<СalorieСountingСard name="Обед" mock_color={green[50]} />
-			<СalorieСountingСard name="Ужин" mock_color={green[50]} />
-			<СalorieСountingСard name="Перекус" mock_color={green[50]} />
-			<СalorieСountingСard name="Кол-во воды" mock_color={green[50]} />
+			{data &&
+				data?.eatings?.length &&
+				data.eatings.map(({ name, id }) => (
+					<СaloriesСountingСard key={id} name={name} mock_color={green[50]} />
+				))}
 		</Stack>
 	);
 };

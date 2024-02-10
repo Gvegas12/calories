@@ -1,7 +1,8 @@
-import { FC, Suspense } from "react";
+import { FC, Suspense, useEffect } from "react";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
+import { useUserStore } from "@/entities/user";
 import MainLayout from "@/processes/MainLayout";
 import { protectedRoutePaths } from "@/shared/config/routes";
 
@@ -9,6 +10,13 @@ import { protectedRouteConfig, publicRouteConfig } from "../../config";
 import { ProtectedRoutesProxy } from "../ProtectedRoutesProxy/ProtectedRoutesProxy";
 
 const AppRouter: FC = () => {
+	const { isAuth, checkIsAuth } = useUserStore();
+
+	useEffect(() => {
+		checkIsAuth();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	return (
 		<Routes>
 			<Route element={<MainLayout />} path={protectedRoutePaths.home}>
@@ -17,7 +25,11 @@ const AppRouter: FC = () => {
 						key={i}
 						path={path}
 						element={
-							<Suspense fallback={<div>Loading...</div>}>{element}</Suspense>
+							isAuth ? (
+								<Navigate to={protectedRoutePaths.home} />
+							) : (
+								<Suspense fallback={<div>Loading...</div>}>{element}</Suspense>
+							)
 						}
 					/>
 				))}
