@@ -1,0 +1,31 @@
+$duration: 0.2s;
+
+.auth-page {
+	width: 100%;
+}
+
+.auth-page-enter {
+	opacity: 0;
+	transform: scale(1.1);
+}
+
+.auth-page-enter-active {
+	opacity: 1;
+	transform: scale(1);
+	transition:
+		opacity $duration,
+		transform $duration;
+}
+
+.auth-page-exit {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.auth-page-exit-active {
+	opacity: 0;
+	transform: scale(0.9);
+	transition:
+		opacity $duration,
+		transform $duration;
+}

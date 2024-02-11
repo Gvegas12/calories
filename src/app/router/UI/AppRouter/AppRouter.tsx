@@ -3,10 +3,13 @@ import { FC, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { useUserStore } from "@/entities/user";
+import { LoginByEmail } from "@/features/LoginByEmail";
+import { RegistrationByEmail } from "@/features/RegistrationByEmail";
+import AuthPage from "@/pages/AuthPage";
 import MainLayout from "@/processes/MainLayout";
-import { protectedRoutePaths } from "@/shared/config/routes";
+import { protectedRoutePaths, publicRoutePaths } from "@/shared/config/routes";
 
-import { protectedRouteConfig, publicRouteConfig } from "../../config";
+import { protectedRouteConfig } from "../../config";
 import { ProtectedRoutesProxy } from "../ProtectedRoutesProxy/ProtectedRoutesProxy";
 
 const AppRouter: FC = () => {
@@ -15,19 +18,28 @@ const AppRouter: FC = () => {
 	return (
 		<Routes>
 			<Route element={<MainLayout />} path={protectedRoutePaths.home}>
-				{publicRouteConfig.map(({ path, element }, i) => (
+				<Route
+					path={publicRoutePaths.auth}
+					element={
+						isAuth ? (
+							<Navigate to={protectedRoutePaths.home} />
+						) : (
+							<Suspense fallback={<div>Loading...</div>}>
+								<AuthPage />
+							</Suspense>
+						)
+					}
+				>
 					<Route
-						key={i}
-						path={path}
-						element={
-							isAuth ? (
-								<Navigate to={protectedRoutePaths.home} />
-							) : (
-								<Suspense fallback={<div>Loading...</div>}>{element}</Suspense>
-							)
-						}
+						index
+						path={publicRoutePaths.authLogin}
+						element={<LoginByEmail />}
 					/>
-				))}
+					<Route
+						path={publicRoutePaths.authRegistration}
+						element={<RegistrationByEmail />}
+					/>
+				</Route>
 				{protectedRouteConfig.map(({ path, element }, i) => (
 					<Route
 						key={i}
