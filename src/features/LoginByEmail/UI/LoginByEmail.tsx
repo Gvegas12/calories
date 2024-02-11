@@ -8,10 +8,10 @@ import { useNavigate } from "react-router-dom";
 
 import {
 	FetchLoginBody,
-	loginByEmailValidationSchema as validationSchema,
 	useUserStore,
+	loginByEmailValidationSchema as validationSchema,
 } from "@/entities/user";
-import { protectedRoutePaths, publicRoutePaths } from "@/shared/config/routes";
+import { publicRoutePaths } from "@/shared/config/routes";
 import UI from "@/shared/UI";
 
 import s from "./LoginByEmail.module.scss";
@@ -42,10 +42,12 @@ export const LoginByEmail: FC<LoginByEmailProps> = ({ className }) => {
 
 	const handleSubmit = useCallback(async () => {
 		if (email) {
-			await login({
-				email,
-			});
-			navigate(protectedRoutePaths.home);
+			await login(
+				{
+					email,
+				},
+				navigate,
+			);
 		}
 	}, [email, login, navigate]);
 
@@ -108,7 +110,7 @@ export const LoginByEmail: FC<LoginByEmailProps> = ({ className }) => {
 						Войти
 					</Button>
 					<Button
-						href={publicRoutePaths.registration}
+						href={publicRoutePaths.authRegistration}
 						className={clsx(s.btn, s.btnSub)}
 						disabled={disabled}
 						color={disabled ? "error" : "primary"}

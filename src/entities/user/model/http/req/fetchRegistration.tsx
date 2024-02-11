@@ -6,7 +6,6 @@ import { $api, apiPaths } from "@/shared/config/http";
 export const registrationByEmailValidationSchema = z.object({
 	email: z.string().email(),
 	firstName: z.string(),
-	password: z.string(),
 });
 
 export type FetchRegistrationBody = z.infer<
@@ -14,14 +13,14 @@ export type FetchRegistrationBody = z.infer<
 >;
 
 export interface FetchRegistrationResponse extends User {
-	accessToken: string;
+	access_token: string;
 }
 
 export const fetchRegistration = async (
 	body: FetchRegistrationBody,
 ): Promise<FetchRegistrationResponse> => {
 	const response = await $api.post<FetchRegistrationResponse>(
-		apiPaths.login,
+		apiPaths.registration,
 		body,
 	);
 

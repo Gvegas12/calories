@@ -5,7 +5,7 @@ import AuthPage from "@/pages/AuthPage";
 
 export const publicRouteConfig: RouteProps[] = [
 	{
-		path: publicRoutePaths.login,
+		path: publicRoutePaths.auth,
 		element: <AuthPage />,
 	},
 ];

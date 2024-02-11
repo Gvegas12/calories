@@ -1,4 +1,4 @@
-import { FC, Suspense, useEffect } from "react";
+import { FC, Suspense } from "react";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -10,12 +10,7 @@ import { protectedRouteConfig, publicRouteConfig } from "../../config";
 import { ProtectedRoutesProxy } from "../ProtectedRoutesProxy/ProtectedRoutesProxy";
 
 const AppRouter: FC = () => {
-	const { isAuth, checkIsAuth } = useUserStore();
-
-	useEffect(() => {
-		checkIsAuth();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	const { isAuth } = useUserStore();
 
 	return (
 		<Routes>
@@ -45,11 +40,6 @@ const AppRouter: FC = () => {
 					/>
 				))}
 			</Route>
-			{/* <Route
-				element={<ConfirmDepartamentIDPage />}
-				path={`/${LOCAL_STORAGE_DEPARTMENT_ID}`}
-			/> */}
-			{/* <Route element={<LogoutPage />} path={`/logout`} /> */}
 		</Routes>
 	);
 };

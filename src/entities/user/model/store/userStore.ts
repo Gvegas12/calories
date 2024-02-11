@@ -1,7 +1,9 @@
+import { NavigateFunction } from "react-router-dom";
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
+import { protectedRoutePaths } from "@/shared/config/routes";
 import { storeWithShallow } from "@/shared/lib";
 
 import {
@@ -18,8 +20,11 @@ interface IUserStore {
 	data: User | null;
 	isAuth: boolean;
 	checkIsAuth(): Promise<void>;
-	login(body: FetchLoginBody): Promise<void>;
-	registration(body: FetchRegistrationBody): Promise<void>;
+	login(body: FetchLoginBody, navigate: NavigateFunction): Promise<void>;
+	registration(
+		body: FetchRegistrationBody,
+		navigate: NavigateFunction,
+	): Promise<void>;
 }
 
 const LOCAL_STORAGE_USER_DATA = __IS_DEV__
@@ -37,7 +42,7 @@ const getUserDataLS = () =>
 const store = create(
 	devtools(
 		immer<IUserStore>((set, get) => ({
-			data: null,
+			data: getUserDataLS(),
 			isAuth: false,
 			setUserData(props: SetUserDataProp) {
 				const { data } = get();
@@ -45,30 +50,49 @@ const store = create(
 				set({ data: newData, isAuth: true });
 				localStorage.setItem(LOCAL_STORAGE_USER_DATA, JSON.stringify(newData));
 			},
-			async registration(body) {
+			async registration(body, navigate) {
 				try {
-					const data = await fetchRegistration(body);
-					localStorage.setItem(LOCAL_STORAGE_ACCESS_TOKEN, data.accessToken);
-					set({ data, isAuth: !!data });
+					const { access_token, ...userData } = await fetchRegistration(body);
+
+					if (access_token) {
+						localStorage.setItem(LOCAL_STORAGE_ACCESS_TOKEN, access_token);
+						localStorage.setItem(
+							LOCAL_STORAGE_USER_DATA,
+							JSON.stringify(userData),
+						);
+
+						set({ data: userData, isAuth: !!access_token });
+						navigate(protectedRoutePaths.home);
+					}
 				} catch (err) {
 					/* TODO add ErrorMessage */
 					set({ data: null, isAuth: false });
 				}
 			},
-			async login(body) {
+			async login(body, navigate) {
 				try {
-					const data = await fetchLogin(body);
-					localStorage.setItem(LOCAL_STORAGE_ACCESS_TOKEN, data.accessToken);
-					set({ data, isAuth: !!data });
+					const { access_token, ...userData } = await fetchLogin(body);
+
+					if (access_token) {
+						localStorage.setItem(LOCAL_STORAGE_ACCESS_TOKEN, access_token);
+						localStorage.setItem(
+							LOCAL_STORAGE_USER_DATA,
+							JSON.stringify(userData),
+						);
+
+						set({ data: userData, isAuth: !!access_token });
+						navigate(protectedRoutePaths.home);
+					}
 				} catch (err) {
 					/* TODO add ErrorMessage */
 					set({ data: null, isAuth: false });
 				}
 			},
 			async checkIsAuth() {
-				const at = localStorage.getItem(LOCAL_STORAGE_USER_DATA);
+				const at = localStorage.getItem(LOCAL_STORAGE_ACCESS_TOKEN);
 				if (at) {
 					const userDataFromLS = getUserDataLS();
+					console.log({ userDataFromLS, isAuth: !!userDataFromLS });
 					set({ data: userDataFromLS, isAuth: !!userDataFromLS });
 				} else {
 					localStorage.clear();

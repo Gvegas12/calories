@@ -11,7 +11,7 @@ export const loginByEmailValidationSchema = z.object({
 export type FetchLoginBody = z.infer<typeof loginByEmailValidationSchema>;
 
 export interface FetchLoginResponse extends User {
-	accessToken: string;
+	access_token: string;
 }
 
 export const fetchLogin = async (

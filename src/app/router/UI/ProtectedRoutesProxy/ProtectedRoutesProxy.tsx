@@ -22,5 +22,5 @@ export const ProtectedRoutesProxy: FC<IProtectedRoutesProxyProps> = ({
 		return <>{children}</>;
 	}
 
-	return <Navigate to={publicRoutePaths.login} replace />;
+	return <Navigate to={publicRoutePaths.authLogin} replace />;
 };
