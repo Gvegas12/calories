@@ -100,7 +100,7 @@ export const LoginByEmail: FC<LoginByEmailProps> = ({ className }) => {
 						variant="contained"
 						size="large"
 					>
-						Регистрация
+						Создать учетную запись
 					</Button>
 				</FormControl>
 			</form>

@@ -66,30 +66,30 @@ export const RegistrationByEmail: FC<RegistrationByEmailProps> = ({
 					<UI.FieldText
 						className={s.field}
 						control={control}
-						sx={{ marginBottom: 2, borderColor: "white" }}
+						sx={{ marginBottom: 2 }}
 						InputProps={{
 							sx: {
 								borderRadius: "1rem",
 								color: "white",
 							},
 						}}
-						InputLabelProps={{ sx: { color: "white" } }}
+						InputLabelProps={{
+							sx: { color: "var(--primary-text-color)", fontWeight: "500" },
+						}}
 						label="Email"
 						variant="outlined"
 						name="email"
 					/>
 					<UI.FieldText
 						control={control}
-						sx={{
-							borderColor: "white",
-						}}
 						InputProps={{
 							sx: {
 								borderRadius: "1rem",
-								color: "white",
 							},
 						}}
-						InputLabelProps={{ sx: { color: "white" } }}
+						InputLabelProps={{
+							sx: { color: "var(--primary-text-color)", fontWeight: "500" },
+						}}
 						label="Ваше имя"
 						variant="outlined"
 						name="firstName"
@@ -113,14 +113,14 @@ export const RegistrationByEmail: FC<RegistrationByEmailProps> = ({
 						Регистрация
 					</Button>
 					<Button
-						href={publicRoutePaths.authRegistration}
+						href={publicRoutePaths.authLogin}
 						className={clsx(s.btn, s.btnSub)}
 						disabled={disabled}
 						color={disabled ? "error" : "primary"}
 						variant="contained"
 						size="large"
 					>
-						Войти
+						Перейти на страницу входа
 					</Button>
 				</FormControl>
 			</form>
