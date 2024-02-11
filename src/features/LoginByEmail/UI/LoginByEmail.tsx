@@ -62,35 +62,18 @@ export const LoginByEmail: FC<LoginByEmailProps> = ({ className }) => {
 					<UI.FieldText
 						className={s.field}
 						control={control}
-						sx={{ borderColor: "white" }}
 						InputProps={{
 							sx: {
 								borderRadius: "1rem",
-								color: "white",
 							},
 						}}
-						InputLabelProps={{ sx: { color: "white" } }}
+						InputLabelProps={{
+							sx: { color: "var(--primary-text-color)", fontWeight: "500" },
+						}}
 						label="Email"
 						variant="outlined"
 						name="email"
 					/>
-					{/* <UI.FieldText
-						control={control}
-						sx={{
-							marginBottom: 2,
-							borderColor: "white",
-						}}
-						InputProps={{
-							sx: {
-								borderRadius: "1rem",
-								color: "white",
-							},
-						}}
-						InputLabelProps={{ sx: { color: "white" } }}
-						label="Введите пароль"
-						variant="outlined"
-						name="password"
-					/> */}
 					<Typography
 						component="div"
 						className={s.errorMessage}

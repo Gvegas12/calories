@@ -18,15 +18,13 @@ export const AuthWidget: FC<AuthWidgetProps> = ({ className }) => {
 
 	return (
 		<div className={clsx(s.AuthWidget, className)}>
-			<div className={s.wrapper}>
-				<Routes location={location}>
-					<Route element={<LoginByEmail />} path={publicRoutePaths.login} />
-					<Route
-						element={<RegistrationByEmail />}
-						path={publicRoutePaths.registration}
-					/>
-				</Routes>
-			</div>
+			<Routes location={location}>
+				<Route element={<LoginByEmail />} path={publicRoutePaths.login} />
+				<Route
+					element={<RegistrationByEmail />}
+					path={publicRoutePaths.registration}
+				/>
+			</Routes>
 		</div>
 	);
 };

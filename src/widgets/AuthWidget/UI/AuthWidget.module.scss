@@ -4,17 +4,6 @@
 	justify-content: center;
 	height: 100dvh;
 	padding: 0 1rem;
-	background: rgb(0, 0, 0, 0.25) url("./img/bg.jpg") no-repeat 40% / cover;
-	background-blend-mode: darken;
-}
-
-.wrapper {
-	padding: 1.2rem 2.5rem;
-	padding-bottom: 2rem;
-	width: 100%;
-	background: rgba(160, 249, 255, 0.1);
-	backdrop-filter: blur(5px);
-	border-radius: 1rem;
 
 	& fieldset {
 		transition: border-color 0.3s;
@@ -22,6 +11,6 @@
 
 	& fieldset,
 	& fieldset:hover {
-		border-color: white;
+		border: 2px solid var(--primary-text-color);
 	}
 }
