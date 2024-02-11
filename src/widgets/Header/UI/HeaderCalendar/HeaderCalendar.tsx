@@ -1,10 +1,11 @@
 import { FC, useState } from "react";
 
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { Box, Button, Paper } from "@mui/material";
 import { LocalizationProvider, DateCalendar } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
+
+import { CalendarButton } from "./CalendarButton/CalendarButton";
 
 export const HeaderCalendar: FC = () => {
 	const [toggle, setToggle] = useState(false);
@@ -12,7 +13,7 @@ export const HeaderCalendar: FC = () => {
 	return (
 		<Box position="relative">
 			<Button color="inherit" size="small" onClick={() => setToggle(!toggle)}>
-				<CalendarMonthIcon sx={{ fontSize: "1.9rem" }} />
+				<CalendarButton />
 			</Button>
 			{toggle && (
 				<Paper

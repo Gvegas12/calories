@@ -15,8 +15,10 @@ export const CaloriesPieChart: FC<CaloriesPieChartProps> = () => {
 				data={mock_data}
 				margin={{ top: 40, right: 60, bottom: 40, left: 60 }}
 				innerRadius={0.5}
+				padAngle={1}
+				cornerRadius={3}
 				activeOuterRadiusOffset={8}
-				colors={{ scheme: "greens" }}
+				colors={{ scheme: "yellow_green" }}
 				borderWidth={1}
 				borderColor={{
 					from: "color",
@@ -25,7 +27,7 @@ export const CaloriesPieChart: FC<CaloriesPieChartProps> = () => {
 				// enableArcLinkLabels={false}
 				arcLinkLabelsOffset={-11}
 				arcLinkLabelsSkipAngle={10}
-				arcLinkLabelsTextColor="#333333"
+				arcLinkLabelsTextColor="#303030"
 				arcLinkLabelsThickness={2}
 				arcLinkLabelsColor={{ from: "color" }}
 				arcLabelsSkipAngle={10}
@@ -33,26 +35,6 @@ export const CaloriesPieChart: FC<CaloriesPieChartProps> = () => {
 					from: "color",
 					modifiers: [["darker", 2]],
 				}}
-				defs={[
-					{
-						id: "dots",
-						type: "patternDots",
-						background: "inherit",
-						color: "rgba(255, 255, 255, 0.3)",
-						size: 4,
-						padding: 1,
-						stagger: true,
-					},
-					{
-						id: "lines",
-						type: "patternLines",
-						background: "inherit",
-						color: "rgba(255, 255, 255, 0.3)",
-						rotation: -45,
-						lineWidth: 6,
-						spacing: 10,
-					},
-				]}
 				fill={[
 					{
 						match: {

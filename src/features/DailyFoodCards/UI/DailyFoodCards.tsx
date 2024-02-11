@@ -1,7 +1,6 @@
 import { FC, useEffect } from "react";
 
 import { Stack } from "@mui/material";
-import { green } from "@mui/material/colors";
 
 import { СaloriesСountingСard } from "@/entities/eating";
 import { useUserStore } from "@/entities/user";
@@ -22,7 +21,7 @@ export const DailyFoodCards: FC = () => {
 			{data &&
 				data?.eatings?.length &&
 				data.eatings.map(({ name, id }) => (
-					<СaloriesСountingСard key={id} name={name} mock_color={green[50]} />
+					<СaloriesСountingСard key={id} name={name} />
 				))}
 		</Stack>
 	);

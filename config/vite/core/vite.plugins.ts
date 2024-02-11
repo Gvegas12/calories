@@ -20,9 +20,9 @@ export const vitePlugins = (outputDir: string) => {
 			outDir: outputDir,
 			manifestFilename: "manifest.json",
 			manifest: {
-				short_name: "Autohiring",
-				name: "Autohiring WB Job",
-				description: "WB Autohiring App",
+				short_name: "Calories",
+				name: "Calories",
+				description: "Calories",
 				start_url: ".",
 				theme_color: "#000000",
 				background_color: "#ffffff",

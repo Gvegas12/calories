@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import { Stack, Avatar, Typography } from "@mui/material";
-import { green } from "@mui/material/colors";
 
 import { useUserStore } from "@/entities/user";
 
@@ -10,14 +9,20 @@ import { HeaderCalendar } from "./HeaderCalendar/HeaderCalendar";
 export const Header: FC = () => {
 	const { data } = useUserStore();
 
+	const name = data?.firstName || "Anonymus";
+
 	return (
 		<Stack direction="row" justifyContent="space-between">
-			<Stack direction="row" spacing={1.3} alignItems="center">
-				<Avatar sx={{ width: 50, height: 50, bgcolor: green[300] }}>G</Avatar>
+			<Stack direction="row" spacing={2} alignItems="center">
+				<Avatar sx={{ width: 50, height: 50, bgcolor: "black" }}>
+					{name[0]}
+				</Avatar>
 				<Stack>
-					<Typography variant="body2">Hello,</Typography>
-					<Typography fontWeight={600}>
-						{data?.firstName || "Anonymus"}
+					<Typography color="var(--primary-text-color)" variant="body2">
+						Привет,
+					</Typography>
+					<Typography color="var(--primary-text-color)" fontWeight={600}>
+						{name}
 					</Typography>
 				</Stack>
 			</Stack>
