@@ -5,6 +5,7 @@ import HomePage from "@/pages/HomePage";
 
 export const protectedRouteConfig: RouteProps[] = [
 	{
+		index: true,
 		path: protectedRoutePaths.home,
 		element: <HomePage />,
 	},
