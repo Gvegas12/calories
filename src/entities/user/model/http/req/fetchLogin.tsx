@@ -5,7 +5,7 @@ import { $api, apiPaths } from "@/shared/config/http";
 
 export const loginByEmailValidationSchema = z.object({
 	email: z.string().email(),
-	password: z.string(),
+	// password: z.string(),
 });
 
 export type FetchLoginBody = z.infer<typeof loginByEmailValidationSchema>;

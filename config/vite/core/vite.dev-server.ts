@@ -6,16 +6,11 @@ export const viteDevServer = ({
 	port,
 	paths,
 }: ViteBuildDevServerOptions): ServerOptions => {
-	const { auth, main } = paths;
+	const { main } = paths;
 
 	return {
 		port,
 		proxy: {
-			[auth.segment]: {
-				target: auth.target,
-				changeOrigin: true,
-				rewrite: auth.rewrite,
-			},
 			[main.segment]: {
 				target: main.target,
 				changeOrigin: true,

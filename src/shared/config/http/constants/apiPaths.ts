@@ -1,4 +1,4 @@
 export const apiPaths = {
-	user: "user",
-	login: "login",
+	user: "auth/user",
+	login: "auth/login",
 };

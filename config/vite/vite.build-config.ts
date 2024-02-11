@@ -20,21 +20,14 @@ export const viteBuildConfig =
 		process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
 		const API_URL = process.env.VITE_API_URL;
-		const API_URL_AUTH = process.env.VITE_API_URL_AUTH;
 
-		if (!API_URL || !API_URL_AUTH)
-			throw new Error("API_URL или API_URL_AUTH не определены!");
+		if (!API_URL) throw new Error("API_URL не определены!");
 
 		const apiPaths: ViteBuildDevServerOptions["paths"] = {
 			main: {
-				segment: "/webapi/api/v1",
+				segment: "/api",
 				target: API_URL,
-				rewrite: (path) => path.replace(/\/webapi\/api\/v1/, ""),
-			},
-			auth: {
-				segment: "/api/v2/auth",
-				target: API_URL_AUTH,
-				rewrite: (path) => path.replace(/\/api\/v2\/auth/, ""),
+				// rewrite: (path) => path.replace(/\/api/, ""),
 			},
 		};
 

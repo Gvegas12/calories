@@ -10,7 +10,7 @@ export type ViteBuildDevServerPaths = {
 	 * Путь по которому будет доступен ресурс внутри приложения
 	 * Например, "http:\//localhost:3000/api/v1", где "/api/v1" - это и есть segment
 	 */
-	segment: string;
+	segment?: string;
 
 	// /**
 	//  * Когда браузер отправляет AJAX-запрос, он автоматически добавляет заголовок "Origin" в запрос, чтобы указать серверу, откуда отправлен запрос.
@@ -44,7 +44,6 @@ export type ViteBuildDevServerPaths = {
 export interface ViteBuildDevServerOptions {
 	port: number;
 	paths?: {
-		auth: ViteBuildDevServerPaths;
 		main: ViteBuildDevServerPaths;
 	};
 }

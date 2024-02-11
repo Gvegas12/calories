@@ -11,7 +11,7 @@ import {
 	loginByEmailValidationSchema as validationSchema,
 	useUserStore,
 } from "@/entities/user";
-import { protectedRoutePaths } from "@/shared/config/routes";
+import { protectedRoutePaths, publicRoutePaths } from "@/shared/config/routes";
 import UI from "@/shared/UI";
 
 import s from "./LoginByEmail.module.scss";
@@ -22,7 +22,6 @@ interface LoginByEmailProps {
 
 const defaultValues: UseFormProps<FetchLoginBody>["defaultValues"] = {
 	email: "",
-	password: "",
 };
 
 export const LoginByEmail: FC<LoginByEmailProps> = ({ className }) => {
@@ -39,17 +38,16 @@ export const LoginByEmail: FC<LoginByEmailProps> = ({ className }) => {
 		formState: { errors, disabled },
 		watch,
 	} = form;
-	const { email, password } = watch();
+	const { email } = watch();
 
 	const handleSubmit = useCallback(async () => {
-		if (email && password) {
+		if (email) {
 			await login({
 				email,
-				password,
 			});
 			navigate(protectedRoutePaths.home);
 		}
-	}, [email, password, login, navigate]);
+	}, [email, login, navigate]);
 
 	return (
 		<FormProvider {...form}>
@@ -62,7 +60,7 @@ export const LoginByEmail: FC<LoginByEmailProps> = ({ className }) => {
 					<UI.FieldText
 						className={s.field}
 						control={control}
-						sx={{ marginBottom: 3, borderColor: "white" }}
+						sx={{ borderColor: "white" }}
 						InputProps={{
 							sx: {
 								borderRadius: "1rem",
@@ -74,7 +72,7 @@ export const LoginByEmail: FC<LoginByEmailProps> = ({ className }) => {
 						variant="outlined"
 						name="email"
 					/>
-					<UI.FieldText
+					{/* <UI.FieldText
 						control={control}
 						sx={{
 							marginBottom: 2,
@@ -90,14 +88,14 @@ export const LoginByEmail: FC<LoginByEmailProps> = ({ className }) => {
 						label="Введите пароль"
 						variant="outlined"
 						name="password"
-					/>
+					/> */}
 					<Typography
 						component="div"
 						className={s.errorMessage}
 						color="red"
 						variant="caption"
 					>
-						{errors.email?.message || errors.password?.message}
+						{errors.email?.message}
 					</Typography>
 					<Button
 						className={s.btn}
@@ -108,6 +106,16 @@ export const LoginByEmail: FC<LoginByEmailProps> = ({ className }) => {
 						size="large"
 					>
 						Войти
+					</Button>
+					<Button
+						href={publicRoutePaths.registration}
+						className={clsx(s.btn, s.btnSub)}
+						disabled={disabled}
+						color={disabled ? "error" : "primary"}
+						variant="contained"
+						size="large"
+					>
+						Регистрация
 					</Button>
 				</FormControl>
 			</form>
